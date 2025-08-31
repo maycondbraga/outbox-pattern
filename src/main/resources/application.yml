@@ -1,0 +1,19 @@
+spring:
+  application:
+    name: outbox-pattern
+
+  kafka:
+    bootstrap-servers: localhost:9092
+    consumer:
+      group-id: events-group
+      auto-offset-reset: earliest
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+    producer:
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.apache.kafka.common.serialization.StringSerializer
+
+aws:
+  dynamodb:
+    endpoint: http://localhost:4566
+    region: sa-east-1
