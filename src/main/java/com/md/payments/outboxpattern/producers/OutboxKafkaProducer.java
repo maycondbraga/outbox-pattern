@@ -27,7 +27,7 @@ public class OutboxKafkaProducer {
 
         for (OutboxEvent event : pendentes) {
             try {
-                kafka.send("pagamentos", event.getMessageId(), event.getPayload()).get(5, TimeUnit.SECONDS);
+                kafka.send("events", event.getMessageId(), event.getPayload()).get(5, TimeUnit.SECONDS);
                 event.setStatus(StatusEvent.PROCESSED.name());
                 event.setProcessedAt(Instant.now().toString());
                 outboxEventRepository.save(event);
